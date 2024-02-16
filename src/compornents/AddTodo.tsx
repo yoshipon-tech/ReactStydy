@@ -1,7 +1,15 @@
-import { FC, useState } from "react";
+import React, { useState } from "react";
+
+import { Todo } from "../interface/Todo";
+
+//propsを受け取る用のtype定義
+type AddTodoProps = {
+  addTodo: (newTodo: Todo) => void;
+};
+
 
 // 関数型のコンポーネント定義
-const AddTodo: FC = () => {
+const AddTodo: React.FC<AddTodoProps> = ({ addTodo }) => {
   //onclick時のロジックをここに記入する
   const [todo, setTodo] = useState("");
 
@@ -10,15 +18,15 @@ const AddTodo: FC = () => {
     console.log("fuga");
   };
 
-  // 関数としてaddTodoの定義が必要
-  const addTodo = () => {
-    console.log("hoge");
-  };
-
   return (
     <>
-      <input type="text" value={todo} onChange={handleTodoChange}></input>
-      <button onClick={addTodo}>送信</button>
+      <input
+        type="text"
+        value={todo}
+        placeholder="Todoを追加"
+        onChange={handleTodoChange}
+      ></input>
+      <button>送信</button>
     </>
   );
 };
