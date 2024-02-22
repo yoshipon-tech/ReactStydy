@@ -1,7 +1,7 @@
 /**
  * 変化したstateをキャッチして表示する部分
  */
-import React, { FC } from "react";
+import React from "react";
 
 import { Todo } from "../interface/Todo";
 
