@@ -1,3 +1,7 @@
+/**
+ * 入力されて値をstateに追加するコンポーネント
+ */
+
 import React, { useState } from "react";
 
 import { Todo } from "../interface/Todo";
@@ -7,26 +11,26 @@ type AddTodoProps = {
   addTodo: (newTodo: Todo) => void;
 };
 
-
 // 関数型のコンポーネント定義
 const AddTodo: React.FC<AddTodoProps> = ({ addTodo }) => {
   //onclick時のロジックをここに記入する
-  const [todo, setTodo] = useState("");
+  const [text, setText] = useState<string>('');
 
-  const handleTodoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTodo(event.target.value);
-    console.log("fuga");
+  const handleTodoChange = () => {
+    // この部分のIDを連番にする必要あり
+    addTodo({id:1, text, done:false});
+    setText('');
   };
 
   return (
     <>
       <input
         type="text"
-        value={todo}
+        value={text}
         placeholder="Todoを追加"
-        onChange={handleTodoChange}
+        onChange={(e) => setText(e.target.value)}
       ></input>
-      <button>送信</button>
+      <button type="submit" onClick ={handleTodoChange}>送信</button>
     </>
   );
 };
