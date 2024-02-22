@@ -14,12 +14,13 @@ type AddTodoProps = {
 // 関数型のコンポーネント定義
 const AddTodo: React.FC<AddTodoProps> = ({ addTodo }) => {
   //onclick時のロジックをここに記入する
-  const [text, setText] = useState<string>('');
+  const [text, setText] = useState<string>("");
+  const [id, setId] = useState(1);
 
   const handleTodoChange = () => {
-    // この部分のIDを連番にする必要あり
-    addTodo({id:1, text, done:false});
-    setText('');
+    setId(id + 1);
+    addTodo({ id, text, done: false });
+    setText("");
   };
 
   return (
@@ -30,7 +31,9 @@ const AddTodo: React.FC<AddTodoProps> = ({ addTodo }) => {
         placeholder="Todoを追加"
         onChange={(e) => setText(e.target.value)}
       ></input>
-      <button type="submit" onClick ={handleTodoChange}>送信</button>
+      <button type="submit" onClick={handleTodoChange}>
+        送信
+      </button>
     </>
   );
 };

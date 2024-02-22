@@ -16,7 +16,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, deleteTodo }) => {
   return (
     <ul>
       {todos.map((todo) => (
-        <li>
+        <li key={todo.id}>
           <input type="checkbox" checked={todo.done} onChange={() => deleteTodo(todo.id)} />
           {todo.id}
           {todo.text}
